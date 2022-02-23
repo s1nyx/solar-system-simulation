@@ -1,4 +1,3 @@
-from game import *
 from math import sqrt, atan2, cos, sin
 from globals import *
 
