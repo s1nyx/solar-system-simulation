@@ -43,14 +43,14 @@ class Planet:
         
         if not self.isSun:
             distance_text = COMICSANS_FONT.render(f"{round(self.distance_to_sun / 1000)}km", 1, WHITE_COLOR)
+
             window.blit(distance_text, (x - distance_text.get_width() / 2, y - distance_text.get_height() / 2 + self.radius * 2))
             window.blit(self.name, (x - self.name.get_width() / 2, y - self.name.get_height() / 2 - 30))
 
     def attractTo(self, other):
         # Calcule de la distance entre les deux planètes
-        other_x, other_y = other.x, other.y
-        distance_x = other_x - self.x
-        distance_y = other_y - self.y
+        distance_x = other.x - self.x
+        distance_y = other.y - self.y
         distance = sqrt(distance_x**2 + distance_y**2)
 
         # Si l'autre planète est le soleil on modifie la distance par défaut
