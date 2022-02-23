@@ -1,5 +1,5 @@
-from globals import *
-from managers.planet_manager import populate_planets, planets
+from core.globals import *
+from managers.planet_manager import PlanetManager
 
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Solar System Simulation")
@@ -9,7 +9,8 @@ def main():
     should_run = True
     clock = pygame.time.Clock()
 
-    populate_planets()
+    solar_system = PlanetManager()
+    solar_system.populate_planets()
 
     while should_run:
         clock.tick(60)
@@ -19,8 +20,8 @@ def main():
             if event.type == pygame.QUIT:
                 should_run = False
 
-        for planet in planets:
-            planet.update_position(planets)
+        for planet in solar_system.planets:
+            planet.update_position(solar_system.planets)
             planet.draw(WINDOW)
 
         pygame.display.update()

@@ -1,4 +1,4 @@
-from game import *
+from core.game import *
 
 WIDTH, HEIGHT = 800, 800
 

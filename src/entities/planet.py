@@ -1,5 +1,5 @@
 from math import sqrt, atan2, cos, sin
-from globals import *
+from core.globals import *
 
 
 class Planet:
@@ -8,7 +8,8 @@ class Planet:
     SCALE = 250 / DISTANCE_EARTH_SUN  # 1DISTANCE_EARTH_SUN = 100 pixels
     TIMESTEP = 86400  # 1 jour en secondes
 
-    def __init__(self, x, y, radius, color, mass, y_velocity, isSun=False):
+    def __init__(self, name, x, y, radius, color, mass, y_velocity, isSun=False):
+        self.name = COMICSANS_FONT.render(f"{name}", 1, WHITE_COLOR)
         self.x = x
         self.y = y
         self.radius = radius
@@ -42,7 +43,8 @@ class Planet:
         
         if not self.isSun:
             distance_text = COMICSANS_FONT.render(f"{round(self.distance_to_sun / 1000)}km", 1, WHITE_COLOR)
-            window.blit(distance_text, (x - distance_text.get_width() / 2, y - distance_text.get_height() / 2))
+            window.blit(distance_text, (x - distance_text.get_width() / 2, y - distance_text.get_height() / 2 + self.radius * 2))
+            window.blit(self.name, (x - self.name.get_width() / 2, y - self.name.get_height() / 2 - 30))
 
     def attractTo(self, other):
         # Calcule de la distance entre les deux planètes
